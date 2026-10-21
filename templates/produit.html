@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block titre %}{{ produit.nom }}{% endblock %}
+{% block contenu %}
+<a href="{{ url_for('liste_produits') }}" class="retour">← Retour aux produits</a>
+
+<article class="detail">
+  <img src="{{ url_for('static', filename='produits/' + produit.image) }}" alt="{{ produit.nom }}" />
+  <div>
+    <h1>{{ produit.nom }}</h1>
+    <p class="cat">{{ produit.categorie }}</p>
+    <p>{{ produit.description }}</p>
+    <p class="prix grand-prix">{{ produit.prix | ariary }}</p>
+    {% if produit.stock > 0 %}
+      <p class="badge ok">Disponible</p>
+      <div class="commande">
+        <p>Commander par téléphone :</p>
+        {% for c in contacts %}
+        <a class="btn-tel" href="tel:{{ c.tel }}">📞 {{ c.affiche }}</a>
+        {% endfor %}
+      </div>
+    {% else %}
+      <p class="badge ko">Indisponible pour le moment</p>
+    {% endif %}
+  </div>
+</article>
+{% endblock %}

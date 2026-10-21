@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block titre %}Produits disponibles{% endblock %}
+{% block contenu %}
+<h1>Produits disponibles</h1>
+
+<form method="get" class="filtres">
+  <input type="search" name="q" value="{{ q }}" placeholder="Rechercher un produit" />
+  <select name="categorie">
+    <option value="">Toutes les catégories</option>
+    {% for c in categories %}
+    <option value="{{ c }}" {% if c == categorie %}selected{% endif %}>{{ c }}</option>
+    {% endfor %}
+  </select>
+  <button type="submit">Filtrer</button>
+</form>
+
+{% if produits %}
+<div class="grille">
+  {% for p in produits %}
+  <a class="carte" href="{{ url_for('page_produit', produit_id=p.id) }}">
+    <img src="{{ url_for('static', filename='produits/' + p.image) }}" alt="{{ p.nom }}" loading="lazy" />
+    <h2>{{ p.nom }}</h2>
+    <p class="prix">{{ p.prix | ariary }}</p>
+    <p class="stock">En stock</p>
+  </a>
+  {% endfor %}
+</div>
+{% else %}
+<p class="vide">Aucun produit disponible pour cette recherche.</p>
+{% endif %}
+{% endblock %}

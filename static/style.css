@@ -1,0 +1,36 @@
+:root { --ink:#0a1a33; --blue:#1f6bff; --paper:#f4f7fc; --line:#dde4f0; --ok:#12805c; --ko:#b42318; }
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family: system-ui, "Poppins", sans-serif; color:#33415c; background:var(--paper); line-height:1.6; }
+.top { background:var(--ink); padding:16px 24px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; }
+.topnav { display:flex; gap:18px; }
+.topnav a { color:rgba(255,255,255,.85); text-decoration:none; font-size:15px; }
+.topnav a:hover { color:#ffb020; }
+.brand { color:#fff; text-decoration:none; font-weight:700; }
+.wrap { max-width:1000px; margin:0 auto; padding:32px 24px; }
+h1 { color:var(--ink); margin-bottom:20px; }
+.filtres { display:flex; flex-wrap:wrap; gap:10px; margin-bottom:28px; }
+.filtres input, .filtres select { padding:11px 14px; border:1.5px solid var(--line); border-radius:10px; font-size:15px; }
+.filtres input { flex:1; min-width:200px; }
+button { padding:11px 22px; background:var(--blue); color:#fff; border:0; border-radius:10px; font-size:15px; cursor:pointer; }
+.grille { display:grid; grid-template-columns:repeat(auto-fill,minmax(210px,1fr)); gap:20px; }
+.carte { background:#fff; border:1px solid var(--line); border-radius:14px; padding:22px; text-decoration:none; color:inherit; transition:transform .2s, box-shadow .2s; }
+.carte:hover { transform:translateY(-3px); box-shadow:0 12px 28px rgba(31,107,255,.14); }
+.carte h2 { font-size:17px; color:var(--ink); margin:8px 0 4px; }
+.prix { font-weight:600; color:var(--blue); }
+.stock { font-size:13px; }
+.retour { display:inline-block; margin-bottom:20px; color:var(--blue); text-decoration:none; }
+.detail { display:grid; grid-template-columns:360px 1fr; gap:36px; background:#fff; border:1px solid var(--line); border-radius:16px; padding:36px; }
+.cat { font-size:14px; margin-bottom:12px; }
+.grand-prix { font-size:28px; margin:18px 0; }
+.badge { display:inline-block; padding:6px 14px; border-radius:999px; font-size:14px; font-weight:600; }
+.badge.ok { background:#e3f6ee; color:var(--ok); }
+.badge.ko { background:#fdecea; color:var(--ko); }
+.vide { padding:30px 0; }
+@media (max-width:640px) { .detail { grid-template-columns:1fr; padding:24px; } }
+
+.carte img { display:block; width:100%; aspect-ratio:1/1; object-fit:cover; border-radius:10px; margin-bottom:12px; }
+.detail img { width:100%; border-radius:12px; }
+.commande { margin-top:22px; }
+.commande p { margin-bottom:8px; font-weight:500; color:var(--ink); }
+.btn-tel { display:inline-block; margin:0 8px 8px 0; padding:10px 18px; background:var(--blue); color:#fff; border-radius:999px; text-decoration:none; font-weight:600; }
+.btn-tel:hover { background:#1553cc; }

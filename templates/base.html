@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block titre %}Boutique{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+  </head>
+  <body>
+    <header class="top">
+      <a href="{{ url_for('accueil') }}" class="brand">Fahazavan Food</a>
+      <nav class="topnav">
+        <a href="{{ url_for('accueil') }}">Accueil</a>
+        <a href="{{ url_for('liste_produits') }}">Boutique</a>
+        <a href="{{ url_for('accueil', _anchor='contact') }}">Contact</a>
+      </nav>
+    </header>
+    <main class="wrap">{% block contenu %}{% endblock %}</main>
+  </body>
+</html>

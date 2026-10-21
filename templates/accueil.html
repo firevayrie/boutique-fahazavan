@@ -1,0 +1,285 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fahazavan Food – Vinaigres de fruits, confitures et gingembre confit</title>
+    <meta
+      name="description"
+      content="Fahazavan Food : vinaigres de fruits non pasteurisés et non filtrés (cidre, fraise, goyave, mangue, ananas), confitures, pâtes de fruits et gingembre confit. Commande par téléphone."
+    />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css2.css') }}" />
+  </head>
+  <body>
+    <!-- ============ NAVIGATION ============ -->
+    <header class="nav">
+      <nav class="menu" aria-label="Navigation principale">
+        <div class="logo"><a href="#accueil">Fahazavan Food</a></div>
+
+        <input type="checkbox" id="burger" class="burger-check" />
+        <label for="burger" class="burger" aria-label="Ouvrir le menu">
+          <span></span><span></span><span></span>
+        </label>
+
+        <ul class="links">
+          <li><a href="#accueil">Accueil</a></li>
+          <li><a href="#apropos">Notre histoire</a></li>
+          <li><a href="{{ url_for('liste_produits') }}">Nos produits</a></li>
+          <li><a href="#tarifs">Nos prix</a></li>
+          <li><a href="#contact" class="nav-cta">Commander</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <!-- ============ HERO ============ -->
+      <section class="hero" id="accueil">
+        <div class="slides" aria-hidden="true">
+          <div class="slide s1"></div>
+          <div class="slide s2"></div>
+          <div class="slide s3"></div>
+          <div class="slide s4"></div>
+        </div>
+
+        <div class="hero-inner">
+          <div class="hero-text">
+            <h1>Vinaigres de fruits, confitures et gingembre confit à savourer au quotidien</h1>
+            <p class="lead">
+              Cidre &amp; fraise, mangue, goyave, ananas : des vinaigres de fruits
+              non pasteurisés et non filtrés, en bouteille d'un litre. Découvrez
+              aussi nos confitures, pâtes de fruits et gingembre confit.
+            </p>
+            <div class="btns">
+              <a href="{{ url_for('liste_produits') }}" class="btn btn-primary">Voir nos produits</a>
+              <a href="#contact" class="btn btn-ghost">Commander par téléphone</a>
+            </div>
+            <p class="hero-note">Commande par téléphone : {{ contacts[0].affiche }}</p>
+          </div>
+
+          <form class="quote" action="{{ url_for('envoyer_demande') }}" method="post">
+            <input type="hidden" name="type_site" value="Question produit (accueil)" />
+            <h2>Une question sur nos produits ?</h2>
+            <p>Laissez-nous vos coordonnées, nous vous recontactons.</p>
+            <label for="q-name">Votre nom</label>
+            <input id="q-name" name="nom" type="text" placeholder="Ex. Rakoto Andry" required />
+            <label for="q-mail">Votre e-mail</label>
+            <input id="q-mail" name="email" type="email" placeholder="vous@exemple.com" required />
+            <button type="submit" class="btn btn-accent">Être recontacté(e)</button>
+          </form>
+        </div>
+      </section>
+
+      <!-- ============ CHIFFRES ============ -->
+      <section class="trust" aria-label="Nos produits en quelques chiffres">
+        <ul>
+          <li><strong>5</strong><span>saveurs de vinaigre de fruits</span></li>
+          <li><strong>3</strong><span>gammes de produits</span></li>
+          <li><strong>1 L</strong><span>la bouteille de vinaigre</span></li>
+          <li><strong>10 000 Ar</strong><span>le litre de vinaigre</span></li>
+        </ul>
+      </section>
+
+      <!-- ============ NOTRE HISTOIRE ============ -->
+      <section class="section about" id="apropos">
+        <div class="wrap two-col">
+          <div>
+            <h2>Des saveurs fruitées pour votre table</h2>
+            <p>
+              Fahazavan Food prépare des vinaigres de fruits, des confitures et des
+              confiseries à base de fruits et de gingembre. Notre vinaigre de cidre
+              se décline en plusieurs saveurs et se vend en bouteille d'un litre,
+              non pasteurisé et non filtré.
+            </p>
+            <!-- AJOUTEZ ICI quelques phrases sur votre histoire : depuis quand vous produisez,
+                 comment vous choisissez vos fruits, ce qui vous distingue. -->
+            <ul class="checks">
+              <li>Vinaigres non pasteurisés et non filtrés, en bouteille d'un litre</li>
+              <li>Cinq saveurs : cidre, fraise, goyave, mangue et ananas</li>
+              <li>Confitures, pâtes de fruits et gingembre confit</li>
+              <li>Commande simple par téléphone</li>
+            </ul>
+            <a href="{{ url_for('liste_produits') }}" class="btn btn-primary">Voir nos produits</a>
+          </div>
+          <div class="about-photos">
+            <img class="photo-main" src="{{ url_for('static', filename='produits/vinaigre-mangue.jpg') }}" alt="Vinaigre de fruits cidre et mangue" loading="lazy" />
+            <img class="photo-second" src="{{ url_for('static', filename='produits/pate-de-fruits.jpg') }}" alt="Pâtes de fruits à la goyave" loading="lazy" />
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ NOS GAMMES ============ -->
+      <section class="section services" id="services">
+        <div class="wrap">
+          <div class="section-head">
+            <h2>Nos gammes</h2>
+            <p>Trois univers de saveurs, à retrouver dans notre boutique.</p>
+          </div>
+
+          <div class="cards three">
+            <a class="card product" href="{{ url_for('liste_produits', categorie='Vinaigres de fruits') }}">
+              <div class="icon">🍎</div>
+              <h3>Vinaigres de fruits</h3>
+              <p>Cidre nature, fraise, goyave, mangue et ananas. Non pasteurisés et non filtrés, en bouteille d'un litre.</p>
+            </a>
+            <a class="card product" href="{{ url_for('liste_produits', categorie='Confitures') }}">
+              <div class="icon">🍯</div>
+              <h3>Confitures</h3>
+              <p>Confiture de goyave, en bocal, pour vos petits-déjeuners et vos goûters.</p>
+            </a>
+            <a class="card product" href="{{ url_for('liste_produits', categorie='Confiseries') }}">
+              <div class="icon">🍬</div>
+              <h3>Confiseries</h3>
+              <p>Pâtes de fruits à la goyave et gingembre confit, en boîtes de plusieurs tailles.</p>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ PRODUITS DISPONIBLES (backend) ============ -->
+      <section class="section shop" id="produits">
+        <div class="wrap">
+          <div class="section-head">
+            <h2>Produits disponibles</h2>
+            <p>Une sélection de nos produits en stock. Cliquez sur un produit pour le découvrir.</p>
+          </div>
+
+          {% if produits %}
+          <div class="cards">
+            {% for p in produits %}
+            <a class="card product" href="{{ url_for('page_produit', produit_id=p.id) }}">
+              <img class="p-img" src="{{ url_for('static', filename='produits/' + p.image) }}" alt="{{ p.nom }}" loading="lazy" />
+              <h3>{{ p.nom }}</h3>
+              <p>{{ p.description }}</p>
+              <p class="p-price">{{ p.prix | ariary }}</p>
+              <p class="p-stock">En stock</p>
+            </a>
+            {% endfor %}
+          </div>
+          {% else %}
+          <p>Aucun produit disponible pour le moment.</p>
+          {% endif %}
+
+          <p class="shop-more"><a href="{{ url_for('liste_produits') }}" class="btn btn-primary">Voir toute la boutique</a></p>
+        </div>
+      </section>
+
+      <!-- ============ COMMENT COMMANDER ============ -->
+      <section class="section process alt">
+        <div class="wrap">
+          <div class="section-head">
+            <h2>Comment commander ?</h2>
+          </div>
+          <ol class="steps">
+            <li>
+              <span class="n">1</span>
+              <h3>Choisissez</h3>
+              <p>Parcourez la boutique et notez les produits qui vous plaisent.</p>
+            </li>
+            <li>
+              <span class="n">2</span>
+              <h3>Contactez-nous</h3>
+              <p>Appelez-nous, ou envoyez-nous un message avec les produits souhaités.</p>
+            </li>
+            <li>
+              <span class="n">3</span>
+              <h3>Recevez votre commande</h3>
+              <p>Nous convenons avec vous des modalités de paiement et de livraison.</p>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <!-- ============ NOS PRIX (backend) ============ -->
+      <section class="section" id="tarifs">
+        <div class="wrap">
+          <div class="section-head">
+            <h2>Nos prix</h2>
+            <p>Les prix de nos produits disponibles, en Ariary.</p>
+          </div>
+
+          <div class="table-wrap">
+            <table class="price-table">
+              <thead>
+                <tr><th>Produit</th><th>Prix</th></tr>
+              </thead>
+              <tbody>
+                {% for p in tarifs %}
+                <tr>
+                  <td><a href="{{ url_for('page_produit', produit_id=p.id) }}">{{ p.nom }}</a></td>
+                  <td>{{ p.prix | ariary }}</td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ AVIS CLIENTS ============
+           Section masquée : ajoutez-la quand vous aurez de vrais avis.
+           Retirez les signes de commentaire pour l'afficher.
+
+      <section class="section feedback" id="feedback">
+        <div class="wrap">
+          <div class="section-head"><h2>Ce que disent nos clients</h2></div>
+          <div class="quotes">
+            <figure>
+              <blockquote>Texte de l'avis du client.</blockquote>
+              <figcaption><strong>Prénom N.</strong>Ville ou profession</figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+      -->
+
+      <!-- ============ CONTACT ============ -->
+      <section class="section contact" id="contact">
+        <div class="wrap two-col">
+          <div>
+            <h2>Envie de goûter ? Passez votre commande</h2>
+            <p>
+              Appelez-nous, ou écrivez-nous en quelques lignes : nous vous
+              répondons pour confirmer votre commande.
+            </p>
+            <ul class="contact-list">
+              <li>📞 {% for c in contacts %}<a href="tel:{{ c.tel }}">{{ c.affiche }}</a>{% if not loop.last %} · {% endif %}{% endfor %}</li>
+              <!-- AJOUTEZ ICI votre adresse et votre e-mail -->
+            </ul>
+          </div>
+
+          <form class="contact-form" action="{{ url_for('envoyer_demande') }}" method="post">
+            {% if merci %}<p class="merci" role="status">Merci ! Votre demande est bien enregistrée. Nous vous recontactons rapidement.</p>{% endif %}
+            {% if erreur %}<p class="erreur" role="alert">{{ erreur }}</p>{% endif %}
+            <label for="c-name">Nom</label>
+            <input id="c-name" name="nom" type="text" required />
+            <label for="c-mail">E-mail</label>
+            <input id="c-mail" name="email" type="email" required />
+            <label for="c-type">Produit qui vous intéresse</label>
+            <select id="c-type" name="type_site">
+              {% for p in tarifs %}<option>{{ p.nom }}</option>{% endfor %}
+              <option>Plusieurs produits</option>
+              <option>Autre question</option>
+            </select>
+            <label for="c-msg">Votre message (quantités, ville de livraison…)</label>
+            <textarea id="c-msg" name="message" rows="4"></textarea>
+            <button type="submit" class="btn btn-accent">Envoyer ma demande</button>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <!-- ============ PIED DE PAGE ============ -->
+    <footer class="footer">
+      <div class="wrap foot">
+        <a href="#accueil" class="foot-logo">Fahazavan Food</a>
+        <ul>
+          <li><a href="#apropos">Notre histoire</a></li>
+          <li><a href="{{ url_for('liste_produits') }}">Nos produits</a></li>
+          <li><a href="#tarifs">Nos prix</a></li>
+          <li><a href="#contact">Commander</a></li>
+        </ul>
+        <p>© 2026 Fahazavan Food. Tous droits réservés.</p>
+      </div>
+    </footer>
+  </body>
+</html>
